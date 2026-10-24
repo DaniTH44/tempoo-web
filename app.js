@@ -49,3 +49,18 @@ $('#year').textContent=new Date().getFullYear();renderMini();
 const MIN=20,PRICE=1;
 const update=src=>{let n=parseInt(src.value,10);if(!Number.isFinite(n)||n<1)n=1;if(n>99999)n=99999;if(src===range)num.value=n;else range.value=Math.min(n,100);const billed=Math.max(n,MIN);total.textContent=(billed*PRICE).toLocaleString('es-ES')+' €';note.textContent=n<MIN?`El mínimo son ${MIN} empleados, así que pagarías ${MIN*PRICE} € + IVA al mes.`:`${n} ${n===1?'persona':'personas'} × ${PRICE} € = ${(billed*PRICE).toLocaleString('es-ES')} € + IVA al mes.`;};
 range.addEventListener('input',()=>update(range));num.addEventListener('input',()=>{if(num.value!=='')update(num);});num.addEventListener('blur',()=>update(num));update(num);})();
+
+// Motion: scroll reveal, ticking clock and price bump. Skipped when reduced motion is preferred.
+(()=>{if(!document.documentElement.classList.contains('motion'))return;
+const groups=[['.benefit-strip>*',.08],['.section-top>*',.12],['.feature-card',.12],['.perspective-copy',0],['.team-board',.1],['.depth-heading>*',.12],['.depth-grid article',.1],['.pricing-copy',0],['.price-card',.12],['.faq>div:first-child',0],['.faq-items details',.06],['.final-cta',0]];
+const els=[];groups.forEach(([sel,step])=>document.querySelectorAll(sel).forEach((el,i)=>{el.classList.add('reveal');el.style.setProperty('--d',(i*step).toFixed(2)+'s');els.push(el);}));
+if(!('IntersectionObserver' in window)){els.forEach(e=>e.classList.add('in'));return;}
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const t=e.target;t.classList.add('in');io.unobserve(t);setTimeout(()=>t.classList.add('settled'),1600);}}),{threshold:.15,rootMargin:'0px 0px -40px 0px'});
+els.forEach(e=>io.observe(e));
+// Safety net: anything still hidden after load becomes visible (e.g. anchors jumped past).
+window.addEventListener('load',()=>setTimeout(()=>els.forEach(e=>{const r=e.getBoundingClientRect();if(r.bottom<0)e.classList.add('in');}),300));
+// Ticking clock in the "Jornada" card.
+const digits=document.querySelector('.clock-digits');if(digits){let t=7*3600+32*60+18;const pad=n=>String(n).padStart(2,'0');setInterval(()=>{if(document.hidden)return;t++;digits.innerHTML=`${pad(Math.floor(t/3600))}<span>:</span>${pad(Math.floor(t/60)%60)}<span>:</span>${pad(t%60)}`;},1000);}
+// Bump the calculator total when it changes.
+const total=document.getElementById('calc-total');if(total){new MutationObserver(()=>{total.classList.remove('bump');void total.offsetWidth;total.classList.add('bump');}).observe(total,{childList:true});}
+})();

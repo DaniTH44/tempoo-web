@@ -55,3 +55,70 @@ body{overflow-x:clip}.mini-main{overflow:hidden}@media(max-width:760px){.hero h1
 .calc-result b{font-size:30px}
 .footer-nav{margin-left:0;width:100%;flex-wrap:wrap;gap:12px 20px;font-size:15px}
 .footer-nav a{padding:6px 0}}
+
+/* Motion: entrance, scroll reveal and ambient details. Only active with html.motion (JS on, no reduced-motion). */
+@keyframes rise{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+@keyframes slideIn{from{opacity:0;transform:translateX(40px) rotate(1.5deg)}to{opacity:1;transform:none}}
+@keyframes pop{0%{opacity:0;transform:translateY(16px) rotate(3deg) scale(.92)}70%{opacity:1;transform:translateY(-3px) rotate(3deg) scale(1.02)}100%{opacity:1;transform:rotate(3deg) scale(1)}}
+@keyframes floaty{0%,100%{translate:0 0}50%{translate:0 -8px}}
+@keyframes spinSlow{to{rotate:360deg}}
+@keyframes drift{0%,100%{rotate:0deg}50%{rotate:6deg}}
+@keyframes pulseDot{0%,100%{box-shadow:0 0 0 0 #83a36b88}60%{box-shadow:0 0 0 5px #83a36b00}}
+@keyframes draw{from{transform:rotate(-3deg) scaleX(0)}to{transform:rotate(-3deg) scaleX(1)}}
+@keyframes bump{0%{transform:scale(1)}40%{transform:scale(1.08)}100%{transform:scale(1)}}
+.motion .hero-copy>*{opacity:0;animation:rise .8s cubic-bezier(.2,.7,.2,1) forwards}
+.motion .hero-copy>.eyebrow{animation-delay:.05s}
+.motion .hero-copy>h1{animation-delay:.15s}
+.motion .hero-copy>p{animation-delay:.3s}
+.motion .hero-copy>.hero-actions{animation-delay:.42s}
+.motion .hero-copy>.hero-note{animation-delay:.52s}
+.motion .underlined:before{transform-origin:left center;transform:rotate(-3deg) scaleX(0);animation:draw .7s cubic-bezier(.3,.8,.3,1) .85s forwards}
+.motion .product-window{opacity:0;animation:slideIn 1s cubic-bezier(.2,.7,.2,1) .25s forwards}
+.motion .floating-note{opacity:0;animation:pop .7s cubic-bezier(.2,.7,.2,1) 1.05s forwards,floaty 5s ease-in-out 1.8s infinite}
+.motion .demo-caption{opacity:0;animation:rise .6s ease 1.3s forwards}
+.motion .sparkle-one{animation:spinSlow 24s linear infinite}
+.motion .sparkle-two{animation:drift 6s ease-in-out infinite}
+.motion .orbit-one{animation:drift 18s ease-in-out infinite}
+.motion .orbit-two{animation:drift 22s ease-in-out -6s infinite reverse}
+.motion .cta-flower,.motion .faq-flower{animation:spinSlow 40s linear infinite}
+.motion .demo-caption i,.motion .live-tag i,.motion .online-dot{animation:pulseDot 2s ease-out infinite}
+/* Scroll reveal */
+.motion .reveal{opacity:0;transform:translateY(30px);transition:opacity .75s cubic-bezier(.2,.7,.2,1),transform .75s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0s)}
+.motion .reveal.in{opacity:1;transform:none}
+.motion .team-board.reveal{transform:translateY(30px) rotate(1.5deg)}
+.motion .team-board.reveal.in{transform:rotate(1.5deg)}
+.motion .clock-progress>span{width:0;transition:width 1.4s cubic-bezier(.3,.8,.3,1) .3s}
+.motion .feature-card.in .clock-progress>span{width:85%}
+.motion .team-row{opacity:0;transform:translateX(14px);transition:opacity .5s ease,transform .5s ease}
+.motion .team-board.in .team-row{opacity:1;transform:none}
+.motion .team-board.in .team-row:nth-of-type(1){transition-delay:.25s}
+.motion .team-board.in .team-row:nth-of-type(2){transition-delay:.35s}
+.motion .team-board.in .team-row:nth-of-type(3){transition-delay:.45s}
+.motion .team-board.in .team-row:nth-of-type(4){transition-delay:.55s}
+.motion .shift-block{transform-origin:left;transform:scaleX(.2);opacity:.3;transition:transform .7s cubic-bezier(.3,.8,.3,1),opacity .7s}
+.motion .feature-card.in .shift-block{transform:none;opacity:1}
+.motion .holiday-dates b{transform:translateY(8px);opacity:0;transition:transform .45s ease,opacity .45s ease}
+.motion .feature-card.in .holiday-dates span:nth-child(1) b{transition-delay:.3s}
+.motion .feature-card.in .holiday-dates span:nth-child(2) b{transition-delay:.38s}
+.motion .feature-card.in .holiday-dates span:nth-child(3) b{transition-delay:.46s}
+.motion .feature-card.in .holiday-dates span:nth-child(4) b{transition-delay:.54s}
+.motion .feature-card.in .holiday-dates span:nth-child(5) b{transition-delay:.62s}
+.motion .feature-card.in .holiday-dates b{transform:none;opacity:1}
+/* Hover life (pointer devices only) */
+@media(hover:hover){.feature-card{transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s}
+.feature-card:hover{transform:translateY(-6px);box-shadow:0 18px 40px #10403a14}
+.motion .feature-card.reveal.in:hover{transform:translateY(-6px)}
+.motion .reveal.settled{transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s;transition-delay:0s}
+.depth-grid article{transition:transform .3s}
+.depth-grid article:hover{transform:translateY(-4px)}
+.depth-grid article>span{display:inline-block;transition:transform .4s}
+.depth-grid article:hover>span{transform:rotate(-10deg) scale(1.15)}
+.audience li{transition:background .25s,border-color .25s,transform .25s}
+.audience li:hover{background:#e1f0eb;border-color:#bce8df;transform:translateY(-2px)}
+.price-card{transition:transform .35s,box-shadow .35s}
+.price-card:hover{box-shadow:0 26px 60px #10403a1a}
+.button span{transition:transform .25s}
+.button:hover span,.text-link:hover span{transform:translate(3px,-3px)}
+.text-link span{transition:transform .25s}}
+.calc-result b.bump{display:inline-block;animation:bump .35s ease}
+@media(prefers-reduced-motion:reduce){.feature-card:hover,.depth-grid article:hover{transform:none}}
