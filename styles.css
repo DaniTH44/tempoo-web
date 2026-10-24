@@ -14,3 +14,44 @@ body{overflow-x:clip}.mini-main{overflow:hidden}@media(max-width:760px){.hero h1
 @media(max-width:760px){.hero-actions{flex-direction:column;gap:16px}.hero-actions .button{width:100%;max-width:340px;font-size:16px;padding:17px 20px;gap:18px}.hero-actions .text-link{font-size:16px}.hero-note{font-size:14px}.mini-sidebar{width:100px}.workspace-name{font-size:9px}.sidebar-group{font-size:7px}.mini-nav{font-size:10px}.sidebar-bottom{display:none}.mini-kicker{font-size:8px}.mini-subtitle{font-size:9px}.mini-stat{font-size:8px;padding:10px 6px}.mini-stat small{font-size:7px}.mini-stat b{font-size:16px;white-space:nowrap}.mini-panel-header{font-size:10px}.mini-panel-header span{font-size:8px}.mini-table{font-size:9px}.mini-table th,.mini-table .status{font-size:8px}.mini-table .avatar{font-size:6px}.floating-note{font-size:14px}.floating-note small{font-size:12px}.demo-caption{font-size:12px}.clock-digits{font-size:34px}.clock-detail{font-size:12px}.clock-preview .button{font-size:15px;padding:11px 12px}.live-tag{font-size:11px}.shift-week{font-size:13px}.shift-week>span{font-size:11px;letter-spacing:3px!important}.shift-block{font-size:12px;height:30px;padding-left:7px}.shift-person .avatar{width:24px;height:24px;font-size:10px}.holiday-top{font-size:14px}.holiday-top small,.holiday-dates>span,.approval{font-size:12px}.holiday-dates b{font-size:15px;height:32px}.team-row{font-size:15px}.team-row small{font-size:12px}.team-row .status,.row-time{font-size:12px}.board-summary,.board-footer{font-size:13px}.board-header .eyebrow{font-size:11px}}
 @media(max-width:760px){.mini-sidebar{width:92px}.mini-main{padding:22px 9px 13px}.mini-table{font-size:8px}.mini-table th,.mini-table .status{font-size:7px}.mini-table .status{padding:3px 4px}.mini-table td{padding:9px 1px}.perspective-copy h2 br:last-child{display:initial}.steps{grid-template-columns:1fr;gap:8px}.steps p{max-width:none}.steps h3{font-size:19px}}
 @media(max-width:760px){.faq h2 br{display:initial}.depth-grid{grid-template-columns:1fr;gap:10px}.depth-grid p{font-size:15px}}
+
+/* Redesign: skip link, audience, pricing, footer nav. */
+.skip-link{position:fixed;left:16px;top:-60px;z-index:30;background:var(--ink);color:white;padding:10px 16px;border-radius:8px;font-size:16px;transition:top .2s}
+.skip-link:focus{top:12px}
+.depth-heading{display:flex;justify-content:space-between;align-items:flex-end;gap:35px;flex-wrap:wrap}
+.audience{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:10px;max-width:560px;justify-content:flex-end}
+.audience li{border:1px solid #d7e5df;background:white;border-radius:999px;padding:8px 15px;font-size:15px;color:#3f5a52}
+.pricing{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;padding-top:40px;padding-bottom:100px;scroll-margin-top:30px}
+.pricing-copy>p{font-size:17px;line-height:1.85;color:#65705e;max-width:430px;margin-top:22px}
+.pricing-list{list-style:none;padding:0;margin:28px 0 0;display:grid;gap:13px}
+.pricing-list li{display:flex;gap:12px;font-size:17px;line-height:1.5}
+.pricing-list li:before{content:'✓';color:#0f766e;font-weight:700;flex-shrink:0}
+.price-card{background:white;border:1px solid #dce9e3;border-radius:15px;padding:36px 34px 30px;box-shadow:0 18px 45px #10403a0d}
+.price-head{display:flex;align-items:center;gap:18px}
+.price-amount{font-family:var(--display);font-size:76px;font-weight:600;letter-spacing:-3px;line-height:1;color:var(--ink)}
+.price-unit{font-size:17px;line-height:1.35;color:#53625b}
+.price-terms{font-size:15px;color:#3f6a5f;margin:16px 0 0;font-weight:500}
+.calculator{background:#f0f5f3;border-radius:11px;padding:22px 20px;margin:26px 0}
+.calculator label{display:block;font-size:16px;font-weight:550;margin-bottom:14px}
+.calc-row{display:flex;gap:14px;align-items:center}
+.calc-row input[type=range]{flex:1;accent-color:#0f766e;min-width:0;height:28px}
+.calc-row input[type=number]{width:88px;padding:10px 10px;border:1px solid #c9dad3;border-radius:7px;background:white;color:var(--ink);font-size:17px;text-align:center}
+.calc-result{display:flex;align-items:baseline;gap:9px;margin-top:18px;font-size:16px;color:#53625b}
+.calc-result b{font-family:var(--display);font-size:34px;font-weight:600;letter-spacing:-1px;color:var(--ink)}
+.calc-note{font-size:14px;color:#5b6b63;margin:8px 0 0;min-height:22px;line-height:1.5}
+.price-card .button{width:100%;justify-content:space-between;background:#0f766e}
+.price-card .button:hover{background:#0c5f58}
+.price-trial{font-size:14px;color:#5b6b63;text-align:center;margin:14px 0 0}
+.cta-terms{font-size:15px;color:#3f6a5f;margin:16px 0 0;position:relative;z-index:1}
+.footer-nav{margin-left:auto;display:flex;gap:24px;font-size:15px}
+.footer-nav a:hover{color:#0f766e}
+@media(max-width:1050px){.pricing{gap:45px}.price-card{padding:30px 24px 26px}.price-amount{font-size:64px}}
+@media(max-width:760px){.audience{justify-content:flex-start}
+.audience li{font-size:14px;padding:7px 13px}
+.pricing{grid-template-columns:1fr;gap:34px;padding-top:20px;padding-bottom:60px}
+.pricing-list li{font-size:15px}
+.price-card{padding:26px 20px 22px}
+.price-amount{font-size:58px}
+.calc-result b{font-size:30px}
+.footer-nav{margin-left:0;width:100%;flex-wrap:wrap;gap:12px 20px;font-size:15px}
+.footer-nav a{padding:6px 0}}

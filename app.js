@@ -43,3 +43,9 @@ document.addEventListener('submit',e=>{if(e.target.id==='absence-form'){e.preven
 $$('dialog').forEach(d=>d.addEventListener('click',e=>{if(e.target===d){const r=d.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)d.close();}}));
 setInterval(()=>{const el=$('#app-clock')||$('#summary-clock');if(el)el.textContent=duration(elapsed());},1000);
 $('#year').textContent=new Date().getFullYear();renderMini();
+
+// Price calculator: 1 € per employee per month, VAT included, 20-employee minimum.
+(()=>{const num=document.getElementById('team-size'),range=document.getElementById('team-size-range'),total=document.getElementById('calc-total'),note=document.getElementById('calc-note');if(!num||!range||!total)return;
+const MIN=20,PRICE=1;
+const update=src=>{let n=parseInt(src.value,10);if(!Number.isFinite(n)||n<1)n=1;if(n>9999)n=9999;if(src===range)num.value=n;else range.value=Math.min(n,100);const billed=Math.max(n,MIN);total.textContent=(billed*PRICE).toLocaleString('es-ES')+' €';note.textContent=n<MIN?`El mínimo son ${MIN} empleados, así que pagarías ${MIN*PRICE} € al mes.`:`${n} ${n===1?'persona':'personas'} × ${PRICE} € = ${(billed*PRICE).toLocaleString('es-ES')} € al mes, IVA incluido.`;};
+range.addEventListener('input',()=>update(range));num.addEventListener('input',()=>{if(num.value!=='')update(num);});num.addEventListener('blur',()=>update(num));update(num);})();
